@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 nov. 2022, 16:22:46 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="bdbeans.Place" table="place" schema="public" optimistic-lock="version">
+        <comment>La classe des places du parking: les emplacements des voitures dans le parking</comment>
+        <composite-id name="id" class="bdbeans.PlaceId">
+            <key-property name="idparking" type="int">
+                <column name="idparking" />
+            </key-property>
+            <key-property name="idplace" type="int">
+                <column name="idplace" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="parking" class="bdbeans.Parking" update="false" insert="false" fetch="select">
+            <column name="idparking" not-null="true" />
+        </many-to-one>
+        <property name="type" type="string">
+            <column name="type" length="254" />
+        </property>
+        <property name="etat" type="string">
+            <column name="etat" length="254" />
+        </property>
+        <property name="prix" type="big_integer">
+            <column name="prix" precision="131089" scale="0" />
+        </property>
+        <set name="detailslocations" table="detailslocation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idparking" not-null="true" />
+                <column name="idplace" not-null="true" />
+            </key>
+            <one-to-many class="bdbeans.Detailslocation" />
+        </set>
+    </class>
+</hibernate-mapping>

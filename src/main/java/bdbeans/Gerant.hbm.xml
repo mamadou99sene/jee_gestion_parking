@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 nov. 2022, 16:22:46 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="bdbeans.Gerant" table="gerant" schema="public" optimistic-lock="version">
+        <comment>la classe des gerants du systeme</comment>
+        <composite-id name="id" class="bdbeans.GerantId">
+            <key-property name="idpersonne" type="int">
+                <column name="idpersonne" />
+            </key-property>
+            <key-property name="idgerant" type="int">
+                <column name="idgerant" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="horaire" class="bdbeans.Horaire" fetch="select">
+            <column name="idhoraire" not-null="true" />
+        </many-to-one>
+        <many-to-one name="parking" class="bdbeans.Parking" fetch="select">
+            <column name="idparking" not-null="true" />
+        </many-to-one>
+        <many-to-one name="personne" class="bdbeans.Personne" update="false" insert="false" fetch="select">
+            <column name="idpersonne" not-null="true" />
+        </many-to-one>
+        <property name="dateembauche" type="date">
+            <column name="dateembauche" length="13" />
+        </property>
+        <property name="code" type="string">
+            <column name="code" length="254" />
+        </property>
+        <set name="reservations" table="reservation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ger_idpersonne" not-null="true" />
+                <column name="idgerant" not-null="true" />
+            </key>
+            <one-to-many class="bdbeans.Reservation" />
+        </set>
+    </class>
+</hibernate-mapping>

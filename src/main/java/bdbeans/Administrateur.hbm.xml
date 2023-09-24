@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 nov. 2022, 16:22:46 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="bdbeans.Administrateur" table="administrateur" schema="public" optimistic-lock="version">
+        <comment>L'administrateur du systeme</comment>
+        <composite-id name="id" class="bdbeans.AdministrateurId">
+            <key-property name="idpersonne" type="int">
+                <column name="idpersonne" />
+            </key-property>
+            <key-property name="idadmin" type="int">
+                <column name="idadmin" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="personne" class="bdbeans.Personne" update="false" insert="false" fetch="select">
+            <column name="idpersonne" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

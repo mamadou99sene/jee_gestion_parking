@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 nov. 2022, 16:22:46 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="bdbeans.Region" table="region" schema="public" optimistic-lock="version">
+        <comment>La region dans laquelle se trouve le parking</comment>
+        <id name="idregion" type="int">
+            <column name="idregion" />
+            <generator class="increment" />
+        </id>
+        <property name="nomregion" type="string">
+            <column name="nomregion" length="254" />
+        </property>
+        <set name="departements" table="departement" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idregion" not-null="true" />
+            </key>
+            <one-to-many class="bdbeans.Departement" />
+        </set>
+    </class>
+</hibernate-mapping>

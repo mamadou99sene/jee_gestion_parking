@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-schema="public" match-name=".*"/>
+  <table-filter match-schema="public" match-name="administrateur"/>
+  <table-filter match-schema="public" match-name="client"/>
+  <table-filter match-schema="public" match-name="departement"/>
+  <table-filter match-schema="public" match-name="detailslocation"/>
+  <table-filter match-schema="public" match-name="gerant"/>
+  <table-filter match-schema="public" match-name="horaire"/>
+  <table-filter match-schema="public" match-name="parking"/>
+  <table-filter match-schema="public" match-name="personne"/>
+  <table-filter match-schema="public" match-name="place"/>
+  <table-filter match-schema="public" match-name="region"/>
+  <table-filter match-schema="public" match-name="reservation"/>
+  <table-filter match-schema="public" match-name="statistiques"/>
+  <table-filter match-schema="public" match-name="voiture"/>
+</hibernate-reverse-engineering>

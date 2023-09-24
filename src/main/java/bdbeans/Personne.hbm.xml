@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 nov. 2022, 16:22:46 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="bdbeans.Personne" table="personne" schema="public" optimistic-lock="version">
+        <comment>L'ensemble des utilisateurs du systeme</comment>
+        <id name="idpersonne" type="int">
+            <column name="idpersonne" />
+            <generator class="increment" />
+        </id>
+        <property name="nom" type="string">
+            <column name="nom" length="254" not-null="true" />
+        </property>
+        <property name="prenom" type="string">
+            <column name="prenom" length="254" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="254" not-null="true" />
+        </property>
+        <property name="telephone" type="string">
+            <column name="telephone" length="254" />
+        </property>
+        <property name="adresse" type="string">
+            <column name="adresse" length="254" />
+        </property>
+        <property name="numerocarteidentite" type="string">
+            <column name="numerocarteidentite" length="254" />
+        </property>
+        <property name="profil" type="string">
+            <column name="profil" length="254" />
+        </property>
+        <property name="login" type="string">
+            <column name="login" length="254" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="254" />
+        </property>
+        <set name="clients" table="client" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpersonne" not-null="true" />
+            </key>
+            <one-to-many class="bdbeans.Client" />
+        </set>
+        <set name="gerants" table="gerant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpersonne" not-null="true" />
+            </key>
+            <one-to-many class="bdbeans.Gerant" />
+        </set>
+        <set name="administrateurs" table="administrateur" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpersonne" not-null="true" />
+            </key>
+            <one-to-many class="bdbeans.Administrateur" />
+        </set>
+    </class>
+</hibernate-mapping>

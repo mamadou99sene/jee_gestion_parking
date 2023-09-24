@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 nov. 2022, 16:22:46 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="bdbeans.Horaire" table="horaire" schema="public" optimistic-lock="version">
+        <id name="idhoraire" type="int">
+            <column name="idhoraire" />
+            <generator class="increment" />
+        </id>
+        <property name="heuredebut" type="string">
+            <column name="heuredebut" length="254" />
+        </property>
+        <property name="heurefin" type="string">
+            <column name="heurefin" length="254" />
+        </property>
+        <property name="jours" type="string">
+            <column name="jours" length="254" />
+        </property>
+        <set name="gerants" table="gerant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idhoraire" not-null="true" />
+            </key>
+            <one-to-many class="bdbeans.Gerant" />
+        </set>
+    </class>
+</hibernate-mapping>

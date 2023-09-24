@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 nov. 2022, 16:22:46 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="bdbeans.Client" table="client" schema="public" optimistic-lock="version">
+        <comment>La classe de l'ensemble des clients du systeme</comment>
+        <composite-id name="id" class="bdbeans.ClientId">
+            <key-property name="idpersonne" type="int">
+                <column name="idpersonne" />
+            </key-property>
+            <key-property name="idclient" type="int" >
+                <column name="idclient"/>
+            </key-property>
+        </composite-id>
+        <many-to-one name="personne" class="bdbeans.Personne" update="false" insert="false" fetch="select">
+            <column name="idpersonne" not-null="true" />
+        </many-to-one>
+        <set name="reservations" table="reservation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpersonne" not-null="true" />
+                <column name="idclient" not-null="true" />
+            </key>
+            <one-to-many class="bdbeans.Reservation" />
+        </set>
+        <set name="voitures" table="voiture" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpersonne" not-null="true" />
+                <column name="idclient" not-null="true" />
+            </key>
+            <one-to-many class="bdbeans.Voiture" />
+        </set>
+    </class>
+</hibernate-mapping>

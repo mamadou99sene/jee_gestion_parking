@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 nov. 2022, 16:22:46 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="bdbeans.Voiture" table="voiture" schema="public" optimistic-lock="version">
+        <comment>Les voitures des clients du parking</comment>
+        <id name="idvoiture" type="int">
+            <column name="idvoiture" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="client" class="bdbeans.Client" fetch="select">
+            <column name="idpersonne" not-null="true" />
+            <column name="idclient" not-null="true" />
+        </many-to-one>
+        <property name="immatriculation" type="string">
+            <column name="immatriculation" length="254" />
+        </property>
+        <property name="marque" type="string">
+            <column name="marque" length="254" />
+        </property>
+        <property name="model" type="string">
+            <column name="model" length="254" />
+        </property>
+        <property name="serie" type="string">
+            <column name="serie" length="254" />
+        </property>
+    </class>
+</hibernate-mapping>
