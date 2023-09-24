@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 nov. 2022, 16:22:46 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="bdbeans.Departement" table="departement" schema="public" optimistic-lock="version">
+        <comment>Les departements qui composent la region</comment>
+        <composite-id name="id" class="bdbeans.DepartementId">
+            <key-property name="idregion" type="int">
+                <column name="idregion" />
+            </key-property>
+            <key-property name="iddepartement" type="int">
+                <column name="iddepartement" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="region" class="bdbeans.Region" update="false" insert="false" fetch="select">
+            <column name="idregion" not-null="true" />
+        </many-to-one>
+        <property name="nomdepartement" type="string">
+            <column name="nomdepartement" length="254" />
+        </property>
+        <set name="parkings" table="parking" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idregion" not-null="true" />
+                <column name="iddepartement" not-null="true" />
+            </key>
+            <one-to-many class="bdbeans.Parking" />
+        </set>
+        <set name="reservations" table="reservation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idregion" not-null="true" />
+                <column name="iddepartement" not-null="true" />
+            </key>
+            <one-to-many class="bdbeans.Reservation" />
+        </set>
+    </class>
+</hibernate-mapping>

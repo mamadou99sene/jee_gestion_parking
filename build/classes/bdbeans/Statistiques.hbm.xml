@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 nov. 2022, 16:22:46 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="bdbeans.Statistiques" table="statistiques" schema="public" optimistic-lock="version">
+        <id name="idstatistique" type="int">
+            <column name="idstatistique" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="parking" class="bdbeans.Parking" fetch="select">
+            <column name="idparking" not-null="true" />
+        </many-to-one>
+        <property name="nombrevoiturespresente" type="java.lang.Integer">
+            <column name="nombrevoiturespresente" />
+        </property>
+        <property name="heureplusfrequentee" type="string">
+            <column name="heureplusfrequentee" length="254" />
+        </property>
+        <property name="evolutionparking" type="java.lang.Integer">
+            <column name="evolutionparking" />
+        </property>
+        <property name="chiffredAffaires" type="big_integer">
+            <column name="chiffred_affaires" precision="131089" scale="0" />
+        </property>
+        <property name="tauxdOccupation" type="big_integer">
+            <column name="tauxd_occupation" precision="131089" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

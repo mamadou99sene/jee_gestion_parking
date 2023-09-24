@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.password">Senemomo</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/gestion_parking</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">none</property>
+        <property name="hibernate.search.autoregister_listeners">true</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping resource="bdbeans/Reservation.hbm.xml" />
+        <mapping resource="bdbeans/Statistiques.hbm.xml" />
+        <mapping resource="bdbeans/Administrateur.hbm.xml" />
+        <mapping resource="bdbeans/Horaire.hbm.xml" />
+        <mapping resource="bdbeans/Parking.hbm.xml" />
+        <mapping resource="bdbeans/Client.hbm.xml" />
+        <mapping resource="bdbeans/Departement.hbm.xml" />
+        <mapping resource="bdbeans/Detailslocation.hbm.xml" />
+        <mapping resource="bdbeans/Place.hbm.xml" />
+        <mapping resource="bdbeans/Voiture.hbm.xml" />
+        <mapping resource="bdbeans/Personne.hbm.xml" />
+        <mapping resource="bdbeans/Region.hbm.xml" />
+        <mapping resource="bdbeans/Gerant.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

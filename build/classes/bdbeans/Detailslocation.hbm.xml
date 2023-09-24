@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 nov. 2022, 16:22:46 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="bdbeans.Detailslocation" table="detailslocation" schema="public" optimistic-lock="version">
+        <comment>Les details des locations de places par les clients, les informations relatives a la location de la place</comment>
+        <composite-id name="id" class="bdbeans.DetailslocationId">
+            <key-property name="idreservation" type="int">
+                <column name="idreservation" />
+            </key-property>
+            <key-property name="idparking" type="int">
+                <column name="idparking" />
+            </key-property>
+            <key-property name="idplace" type="int">
+                <column name="idplace" />
+            </key-property>
+            <key-property name="idlocation" type="int">
+                <column name="idlocation" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="place" class="bdbeans.Place" update="false" insert="false" fetch="select">
+            <column name="idparking" not-null="true" />
+            <column name="idplace" not-null="true" />
+        </many-to-one>
+        <many-to-one name="reservation" class="bdbeans.Reservation" update="false" insert="false" fetch="select">
+            <column name="idreservation" not-null="true" />
+        </many-to-one>
+        <property name="datedebut" type="date">
+            <column name="datedebut" length="13" />
+        </property>
+        <property name="datefin" type="date">
+            <column name="datefin" length="13">
+                <comment>La difference entre la date de debut de location et de fin de locaton</comment>
+            </column>
+        </property>
+        <property name="montant" type="big_integer">
+            <column name="montant" precision="131089" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

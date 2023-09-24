@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2 nov. 2022, 16:22:46 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="bdbeans.Reservation" table="reservation" schema="public" optimistic-lock="version">
+        <comment>L'ensemble des reservations des cleints du systeme</comment>
+        <id name="idreservation" type="int">
+            <column name="idreservation" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="client" class="bdbeans.Client" fetch="select">
+            <column name="idpersonne" not-null="true" />
+            <column name="idclient" not-null="true" />
+        </many-to-one>
+        <many-to-one name="departement" class="bdbeans.Departement" fetch="select">
+            <column name="idregion" not-null="true" />
+            <column name="iddepartement" not-null="true" />
+        </many-to-one>
+        <many-to-one name="gerant" class="bdbeans.Gerant" fetch="select">
+            <column name="ger_idpersonne" not-null="true" />
+            <column name="idgerant" not-null="true" />
+        </many-to-one>
+        <property name="datereservation" type="date">
+            <column name="datereservation" length="13" />
+        </property>
+        <property name="heurereservation" type="string">
+            <column name="heurereservation" length="254" />
+        </property>
+        <property name="etat" type="string">
+            <column name="etat" length="254" />
+        </property>
+        <set name="detailslocations" table="detailslocation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idreservation" not-null="true" />
+            </key>
+            <one-to-many class="bdbeans.Detailslocation" />
+        </set>
+    </class>
+</hibernate-mapping>
