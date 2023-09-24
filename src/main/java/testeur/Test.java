@@ -102,9 +102,9 @@ public class Test {
 		System.out.println(all_gerant.get(i).getPersonne().getTelephone());
 	}*/
 	ArrayList<Parking> allparking=(ArrayList<Parking>) new ParkingHome().getAllParkingsUniques();
-	for(int i=0;i<allparking.size();i++)
+	for(int j=0;j<allparking.size();j++)
 	{
-		System.out.println(i+" "+allparking.get(i).getDepartement().getNomdepartement());
+		System.out.println(j+" "+allparking.get(j).getDepartement().getNomdepartement());
 	}
 	ArrayList<Place>les_places=(ArrayList<Place>) new PlaceHome().getAllPlacesUniques();
 	int id_dernierPlace=les_places.get(les_places.size()-1).getId().getIdplace();
